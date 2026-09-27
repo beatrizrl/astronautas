@@ -228,16 +228,158 @@ public:
     }
     }
     void listarVoos(){
+        cout << "LISTA DE VOOS" << endl;
+        cout << "== planejado ==" << endl;
+        //Planejado
+        // to com dor de cabeça nessa parte
+        int num_plan = 0;
+        for (int i = 0; i < voos.size(); i++){
+        if (voos[i].getEstado() == "Planejado"){
+            num_plan =+ 1;
+            cout << "Voo " << voos[i].getCodigo() << ": ";
+            if (voos[i].getQuantidadeAstronautas() > 0){
+                int quant = voos[i].getQuantidadeAstronautas();
+                for (int j = 0; j < quant; j++){
+                string cpf = voos[i].getCpf(j);
+                int pos_astro = buscarAstronauta(cpf); 
+                Astronauta astronauta = astronautas[pos_astro];
+                cout << astronauta.getCpf() << " " << astronauta.getNome();
+                if (j < quant - 1){
+                    cout << ", ";
+                }
+             else {
+                cout << "sem astronautas";
+            }
+        cout << endl;
+            }
+          }
+         }   
+       }
+            if(num_plan == 0){
+                cout << "(nenhum)" << endl;
+            }
 
+
+         
+         //em curso
+         cout << "== em curso ==" << endl;
+         int num_curso = 0;
+          for (int i = 0; i < voos.size(); i++){
+          if (voos[i].getEstado() == "Em Curso"){
+            num_curso =+ 1;
+            cout << "Voo " << voos[i].getCodigo() << ": ";
+            if (voos[i].getQuantidadeAstronautas() > 0){
+                int quant = voos[i].getQuantidadeAstronautas();
+                for (int j = 0; j < quant; j++){
+                string cpf = voos[i].getCpf(j);
+                int pos_astro = buscarAstronauta(cpf); 
+                Astronauta astronauta = astronautas[pos_astro];
+                cout << astronauta.getCpf() << " " << astronauta.getNome();
+                if (j < quant - 1){
+                    cout << ", ";
+                }
+             }
+            } else {
+                cout << "sem astronautas";
+            }
+        cout << endl;
+         } 
+        if(num_curso == 0){
+             cout << "(nenhum)" << endl;
+        }
     }
-    void listarMortos();
+            
+        // finalizado com sucesso 
+        cout << "== finalizado com sucesso ==" << endl;
+        int num_suc = 0;
+         for (int i = 0; i < voos.size(); i++){
+          if (voos[i].getEstado() == "finalizado com sucesso"){
+            num_suc =+ 1;
+            cout << "Voo " << voos[i].getCodigo() << ": ";
+            if (voos[i].getQuantidadeAstronautas() > 0){
+                int quant = voos[i].getQuantidadeAstronautas();
+                for (int j = 0; j < quant; j++){
+                string cpf = voos[i].getCpf(j);
+                int pos_astro = buscarAstronauta(cpf); 
+                Astronauta astronauta = astronautas[pos_astro];
+                cout << astronauta.getCpf() << " " << astronauta.getNome();
+                if (j < quant - 1){
+                    cout << ", ";
+                }
+            }
+          } else {
+                cout << "sem astronautas";
+            }
+        cout << endl;
+        } 
+           if(num_suc == 0){
+             cout << "(nenhum)" << endl;
+            
+        }
+    }
+        // finalizado com explosao
+         cout << "== finalizado com explosao ==" << endl;
+        int num_exp = 0;
+         for (int i = 0; i < voos.size(); i++){
+              if (voos[i].getEstado() == "finalizado com explosao"){
+                 num_exp =+ 1;
+                 cout << "Voo " << voos[i].getCodigo() << ": ";
+                 if (voos[i].getQuantidadeAstronautas() > 0){
+                int quant = voos[i].getQuantidadeAstronautas();
+                for (int j = 0; j < quant; j++){
+                string cpf = voos[i].getCpf(j);
+                int pos_astro = buscarAstronauta(cpf); 
+                Astronauta astronauta = astronautas[pos_astro];
+                cout << astronauta.getCpf() << " " << astronauta.getNome();
+                if (j < quant - 1){
+                    cout << ", ";
+                }
+            }
+          }else {
+                cout << "sem astronautas";
+            }
+        cout << endl;
+        } 
+           if(num_exp == 0){
+             cout << "(nenhum)" << endl;
+             
+        }
+     }
+    
+    }
+    
+    void listarMortos(){
+        cout << "ASTRONAUTAS MORTOS" << endl;
+        int num_mortos = 0;
+       for (int i = 0; i < astronautas.size(); i++){
+            if(!astronautas[i].estaVivo()){
+                cout << astronautas[i].getCpf() << " " << astronautas[i].getNome() << " - voos:";
+                num_mortos++;
+                int num_voos = 0;
+                for (int j = 0; j < voos.size(); j++){
+                    if(voos[j].temAstronauta(astronautas[i].getCpf()) && voos[j].getEstado() != "Planejado"){
+                        cout << " " << voos[j].getCodigo();
+                        num_voos++;
+                    }
+                }
+                if(num_voos == 0){
+                    cout << "(nenhum)";
+                }
+                cout << endl;
+            }
+        
+       } 
+        if (num_mortos == 0){
+        cout << "(nenhum)" << endl;
+       }
+    }
 };
 
 // Depois, em cada comando, apague a linha do cout com "TODO" e descomente
 // a chamada ao metodo da Agencia.
 
 int main() {
-    // TODO: criar a Agencia aqui, por exemplo:  Agencia agencia;
+    Agencia agencia;
     string comando;
 
     while (cin >> comando) {   // le uma palavra; para no FIM ou quando a entrada acaba
@@ -248,46 +390,46 @@ int main() {
             int idade;
             cin >> cpf >> idade;
             getline(cin >> ws, nome);   // o nome vem por ultimo e pode ter espacos
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.cadastrarAstronauta(cpf, nome, idade);
+         
+            agencia.cadastrarAstronauta(cpf, nome, idade);
         } else if (comando == "CADASTRAR_VOO") {
             int codigo;
             cin >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.cadastrarVoo(codigo);
+            
+            agencia.cadastrarVoo(codigo);
         } else if (comando == "ADICIONAR_ASTRONAUTA") {
             string cpf;
             int codigo;
             cin >> cpf >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.adicionarAstronauta(cpf, codigo);
+            
+            agencia.adicionarAstronauta(cpf, codigo);
         } else if (comando == "REMOVER_ASTRONAUTA") {
             string cpf;
             int codigo;
             cin >> cpf >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.removerAstronauta(cpf, codigo);
+            
+            agencia.removerAstronauta(cpf, codigo);
         } else if (comando == "LANCAR_VOO") {
             int codigo;
             cin >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.lancarVoo(codigo);
+            
+            agencia.lancarVoo(codigo);
         } else if (comando == "EXPLODIR_VOO") {
             int codigo;
             cin >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.explodirVoo(codigo);
+           
+            agencia.explodirVoo(codigo);
         } else if (comando == "FINALIZAR_VOO") {
             int codigo;
             cin >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.finalizarVoo(codigo);
+            
+            agencia.finalizarVoo(codigo);
         } else if (comando == "LISTAR_VOOS") {
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.listarVoos();
+            
+            agencia.listarVoos();
         } else if (comando == "LISTAR_MORTOS") {
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.listarMortos();
+            
+            agencia.listarMortos();
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }

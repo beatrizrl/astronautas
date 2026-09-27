@@ -1,0 +1,1 @@
+g++ -std=c++11 -Wall -Wno-sign-compare src/main.cpp -o agencia ./agencia < testes/parte1/01_cadastros.in
