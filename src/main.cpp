@@ -125,7 +125,7 @@ public:
             if (cpfs[i] == cpf)
             {
                 cpfs.erase(cpfs.begin() + i);
-                break;
+                return true;
             }
         }
         return false;
@@ -221,7 +221,7 @@ public:
             cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
             return;
         }
-        Voo voo = voos[posicao_voo];
+        Voo& voo = voos[posicao_voo];
         if (voo.getEstado() != "Planejado"){
             cout << "ERRO: voo " << codigo << "nao esta planejado" << endl;
             return;
@@ -252,7 +252,7 @@ public:
             cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
             return;
         }
-        Voo voo = voos[posicao_voo];
+        Voo& voo = voos[posicao_voo];
         if (voo.getEstado() != "Planejado"){
             cout << "ERRO: voo " << codigo << " nao esta planejado" << endl;
             return;
@@ -274,7 +274,7 @@ public:
             return;
         }
         
-        Voo voo = voos[pos_voo];
+        Voo& voo = voos[pos_voo];
         if (voo.getEstado() != "Planejado"){
             cout << "ERRO: voo " << codigo << " nao esta planejado" << endl;
             return;
@@ -324,7 +324,7 @@ public:
             cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
             return;
         }
-        Voo voo = voos[pos_voo];
+        Voo& voo = voos[pos_voo];
         if (voo.getEstado() != "Em curso"){
             cout << "ERRO: voo " << codigo << " nao esta em curso" << endl;
             return;
@@ -347,7 +347,7 @@ public:
             cout << "ERRO: voo " << codigo << " nao cadastrado" << endl; 
             return; // nao é um voo cadastrado
         }
-        Voo voo = voos[pos_voo];
+        Voo& voo = voos[pos_voo];
           if (voo.getEstado() != "Em curso"){
             cout << "ERRO: voo " << codigo << " nao esta em curso" << endl;
             return;
