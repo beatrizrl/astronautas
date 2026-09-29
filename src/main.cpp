@@ -75,7 +75,7 @@ public:
     Voo(int codigo)
     {
         this->codigo = codigo;
-        this->estado = "Planejado";
+        this->estado = "planejado";
         cpfs = {};
     }
 
@@ -134,16 +134,16 @@ public:
     // false se o CPF nao estava no voo
     void lancar()
     {
-        estado = "Em Curso";
+        estado = "em curso";
     }
 
     void explodir()
     {
-        estado = "Finalizado com explosao";
+        estado = "finalizado com explosao";
     }
     void finalizar()
     {
-        estado = "Finalizado com sucesso";
+        estado = "finalizado com sucesso";
     }
 };
 
@@ -222,7 +222,7 @@ public:
             return;
         }
         Voo& voo = voos[posicao_voo];
-        if (voo.getEstado() != "Planejado"){
+        if (voo.getEstado() != "planejado"){
             cout << "ERRO: voo " << codigo << "nao esta planejado" << endl;
             return;
         }
@@ -253,7 +253,7 @@ public:
             return;
         }
         Voo& voo = voos[posicao_voo];
-        if (voo.getEstado() != "Planejado"){
+        if (voo.getEstado() != "planejado"){
             cout << "ERRO: voo " << codigo << " nao esta planejado" << endl;
             return;
         }
@@ -275,7 +275,7 @@ public:
         }
         
         Voo& voo = voos[pos_voo];
-        if (voo.getEstado() != "Planejado"){
+        if (voo.getEstado() != "planejado"){
             cout << "ERRO: voo " << codigo << " nao esta planejado" << endl;
             return;
         }
@@ -289,7 +289,7 @@ public:
         {
             string cpf = voo.getCpf(i);
             int pos_astro = buscarAstronauta(cpf);
-            Astronauta astronauta = astronautas[pos_astro];
+            Astronauta& astronauta = astronautas[pos_astro];
             if (!astronauta.estaVivo())
             {
                 vivos = false;
@@ -299,7 +299,7 @@ public:
             if (!astronauta.estaDisponivel())
             {
                 disponivel = false;
-                cout << "ERRO: astronauta " << cpf << " nao esta disponivel" << endl;
+                cout << "ERRO: astronauta " << cpf << " esta indisponivel" << endl;
                 return;
             }
         }
@@ -312,7 +312,7 @@ public:
             {
                 string cpf = voo.getCpf(i);
                 int pos_astro = buscarAstronauta(cpf);
-                Astronauta astronauta = astronautas[pos_astro];
+                Astronauta& astronauta = astronautas[pos_astro];
                 astronauta.embarcar();
             }
         }
@@ -325,7 +325,7 @@ public:
             return;
         }
         Voo& voo = voos[pos_voo];
-        if (voo.getEstado() != "Em curso"){
+        if (voo.getEstado() != "em curso"){
             cout << "ERRO: voo " << codigo << " nao esta em curso" << endl;
             return;
         }
@@ -335,7 +335,7 @@ public:
         {
             string cpf = voo.getCpf(i);
             int pos_astro = buscarAstronauta(cpf);
-            Astronauta astronauta = astronautas[pos_astro];
+            Astronauta& astronauta = astronautas[pos_astro];
             astronauta.morrer();
         }
     }
@@ -348,7 +348,7 @@ public:
             return; // nao é um voo cadastrado
         }
         Voo& voo = voos[pos_voo];
-          if (voo.getEstado() != "Em curso"){
+          if (voo.getEstado() != "em curso"){
             cout << "ERRO: voo " << codigo << " nao esta em curso" << endl;
             return;
         }
@@ -358,7 +358,7 @@ public:
         {
             string cpf = voo.getCpf(i);
             int pos_astro = buscarAstronauta(cpf);
-            Astronauta astronauta = astronautas[pos_astro];
+            Astronauta& astronauta = astronautas[pos_astro];
             astronauta.desembarcar();
         }
     }
@@ -371,7 +371,7 @@ public:
         int num_plan = 0;
         for (int i = 0; i < voos.size(); i++)
         {
-            if (voos[i].getEstado() == "Planejado")
+            if (voos[i].getEstado() == "planejado")
             {
                 num_plan++;
                 cout << "Voo " << voos[i].getCodigo() << ": ";
@@ -408,7 +408,7 @@ public:
         int num_curso = 0;
         for (int i = 0; i < voos.size(); i++)
         {
-            if (voos[i].getEstado() == "Em Curso")
+            if (voos[i].getEstado() == "em curso")
             {
                 num_curso++;
                 cout << "Voo " << voos[i].getCodigo() << ": ";
@@ -526,7 +526,7 @@ public:
                 int num_voos = 0;
                 for (int j = 0; j < voos.size(); j++)
                 {
-                    if (voos[j].temAstronauta(astronautas[i].getCpf()) && voos[j].getEstado() != "Planejado")
+                    if (voos[j].temAstronauta(astronautas[i].getCpf()) && voos[j].getEstado() != "planejado")
                     {
                         cout << " " << voos[j].getCodigo();
                         num_voos++;
