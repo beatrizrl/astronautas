@@ -281,7 +281,7 @@ public:
         }
         if (voo.getQuantidadeAstronautas() == 0){
             cout << "ERRO: voo " << codigo  << " nao possui astronautas" << endl;
-
+            return;
         }
         bool vivos = true;
         bool disponivel = true;
