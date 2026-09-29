@@ -27,13 +27,13 @@ Como rodafr os testes no terminal e navegar pelo terminal
 ## Primeiro contato: revisão sem editar
 
 - As três melhorias que a IA sugeriu, em uma linha cada:  
-1-
-2-
-3-
+1- A qui ele percebeu um bug no meu somador num_suc = = +1, que nao esta de fato adicionando, seria colocar num_suc++
+2- trocar o estado de string por um enum, para o programa nao ficar comprarando texto todo lugar, porque ai um erro de digitaçao simples altera tudo.
+3- trocar o int dos laços por size_t para não converter a cada comparaçao e evitar que um indice negativo vire um numero bem maior
 
-- A que escolhi e por quê:
-- O que mudou no código, e se os seis testes continuaram passando:
-- O que entendi que não sabia antes:
+- A que escolhi e por quê: escolhi a priemira pois isso pode esta alterando os meus resultados
+- O que mudou no código, e se os seis testes continuaram passando: mudou que agora esta realmente adicionando mais um a essa variavel
+- O que entendi que não sabia antes: eu ja sabia so tinha me confundido, entao aprendir que a melhor opçao é por sempre a variavel++ quando for para adicionar mais um
 
 ## Missão 1: LISTAR_ASTRONAUTAS e HISTORICO
 
